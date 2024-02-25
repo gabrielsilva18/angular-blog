@@ -1,10 +1,11 @@
 .conteiner__small-card {
-  width: 700px;
+  width: 100%;
   margin-bottom: 15px;
 }
 .conteiner__smal-card-content {
   display: flex;
   flex-direction: row;
+  margin-left: 300px;
 }
 
 .small-card__photo > img {
@@ -21,4 +22,6 @@
 
 .conteiner__small-card__separator {
   margin-top: 10px;
+  width: 100%;
+  margin-left: 300px;
 }
