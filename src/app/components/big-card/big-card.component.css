@@ -25,4 +25,7 @@
 .big-card__photo > img {
   width: 100%;
   min-width: 400px;
+  height: 100%;
+  max-height: 350px;
+  border-radius: 10px;
 }

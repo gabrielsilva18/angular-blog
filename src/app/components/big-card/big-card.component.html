@@ -1,16 +1,15 @@
 <div class="conteiner__big-card">
   <div class="big-card__photo">
-    <img src="{{ photoCover }}" alt="" height="250px" width="397px" srcset="" />
+    <img [src]="photoCover" alt="Imagem de Capa" />
+    <!-- Use [src] para atribuir dinamicamente a URL da imagem -->
   </div>
   <div class="big-card__title">
-    <h1>
-      <a [routerLink]="['content', Id]">{{ cardTitle }}</a>
-    </h1>
+    <h1>ok</h1>
   </div>
   <div class="big-card__description">
     <p>
       <a href="#">
-        {{ cardDescription }}
+        {{ contentDescription }}
       </a>
     </p>
   </div>

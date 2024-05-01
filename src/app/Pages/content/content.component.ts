@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ImageService } from '../../image.service'; // Importe o serviço
 import { ActivatedRoute } from '@angular/router';
-import { dataFake } from '../../data/dataFake';
 
 @Component({
   selector: 'app-content',
@@ -8,25 +8,29 @@ import { dataFake } from '../../data/dataFake';
   styleUrls: ['./content.component.css'],
 })
 export class ContentComponent implements OnInit {
-  photoCover: string = '';
-
+  photoCover: string[] = [];
   contentTitle: string = '';
-
   contentDescription: string = '';
   private id: string | null = '0';
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private imageService: ImageService // Injete o serviço
+  ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((value) => (this.id = value.get('id')));
-    this.setValuesToComponent(this.id);
+    // Obtenha o parâmetro 'id' da rota
+    this.route.paramMap.subscribe((paramMap) => {
+      this.id = paramMap.get('id'); // Acesse o parâmetro 'id' usando o método 'get'
+      this.setValuesToComponent(this.id);
+    });
   }
 
+  // Setar valores para os conteúdos, buscando através do serviço de imagens aleatórias
   setValuesToComponent(id: string | null) {
-    const result = dataFake.filter((article) => article.id == id)[0];
-
-    this.contentTitle = result.title;
-    this.contentDescription = result.description;
-    this.photoCover = result.photoCover;
+    // Use o método getRandomImage() para obter uma imagem aleatória
+    this.imageService.getRandomImage().subscribe((imageUrl) => {
+      this.photoCover = imageUrl;
+    });
   }
 }
